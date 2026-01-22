@@ -5,6 +5,10 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.9"
 dependencies = [
+    "google-genai>=1.47.0",
     "ipykernel>=6.31.0",
+    "litellm>=1.81.1",
     "numpy>=2.0.2",
+    "pydantic>=2.12.5",
+    "python-dotenv>=1.2.1",
 ]
