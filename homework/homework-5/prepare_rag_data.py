@@ -42,8 +42,11 @@ def chunk_text(text, chunk_size=800, overlap=150):
     return chunks
 
 def main():
-    source_path = 'data/fordham-website'
-    df = load_fordham_data(source_path)
+    SCRIPT_DIR = pathlib.Path(__file__).parent
+    REPO_ROOT = SCRIPT_DIR.parents[1]
+    
+    source_path = REPO_ROOT / 'data' / 'fordham-website'
+    df = load_fordham_data(str(source_path))
     
     chunked_data = []
     for _, row in tqdm(df.iterrows(), total=len(df), desc="Chunking"):
@@ -64,9 +67,9 @@ def main():
     embeddings = model.encode(df_chunks['chunk'].tolist(), show_progress_bar=True)
     
     # Save files expected by Streamlit app
-    df_chunks.to_csv("chunks.csv", index=False)
-    np.save("chunk_embeddings.npy", embeddings)
-    print("Data preparation complete. Files 'chunks.csv' and 'chunk_embeddings.npy' created.")
+    df_chunks.to_csv(SCRIPT_DIR / "chunks.csv", index=False)
+    np.save(SCRIPT_DIR / "chunk_embeddings.npy", embeddings)
+    print(f"Data preparation complete. Files created in {SCRIPT_DIR}")
 
 if __name__ == "__main__":
     main()

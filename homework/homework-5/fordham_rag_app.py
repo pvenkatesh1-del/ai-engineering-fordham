@@ -16,10 +16,11 @@ st.set_page_config(page_title="Fordham RAG", layout="wide")
 st.title("Fordham RAG Assistant")
 
 # Paths
-PROJECT_ROOT = Path.cwd()
-CHUNKS_PATH = PROJECT_ROOT / "chunks.csv"
-EMB_PATH = PROJECT_ROOT / "chunk_embeddings.npy"
-ENV_PATH = PROJECT_ROOT / ".env"
+SCRIPT_DIR = Path(__file__).parent
+REPO_ROOT = SCRIPT_DIR.parents[1]
+CHUNKS_PATH = SCRIPT_DIR / "chunks.csv"
+EMB_PATH = SCRIPT_DIR / "chunk_embeddings.npy"
+ENV_PATH = REPO_ROOT / ".env"
 
 # Load env
 load_dotenv(dotenv_path=ENV_PATH)
