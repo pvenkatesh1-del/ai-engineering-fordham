@@ -30,3 +30,5 @@ Thumbs.db
 data/
 *.csv
 *.npy
+
+replacements.txt
